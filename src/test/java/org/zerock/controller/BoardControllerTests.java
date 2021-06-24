@@ -20,7 +20,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.FlashMap;
@@ -51,7 +50,9 @@ public class BoardControllerTests {
 
 	@Test
 	public void testList() throws Exception {
-		ModelAndView mav = mockMvc.perform(get("/board/list"))
+		ModelAndView mav = mockMvc.perform(get("/board/list")
+					.param("pageNum", "2")
+					.param("amount", "7"))
 				.andReturn()
 				.getModelAndView();
 
@@ -63,6 +64,12 @@ public class BoardControllerTests {
 		Object o = map.get("list");
 		assertNotNull(o);
 		assertTrue(o instanceof List<?>);
+		
+		List<BoardVO> list = (List<BoardVO>) o;
+		assertEquals(7, list.size());
+		
+//		Object o2 = map.get("criteria");
+//		assertNotNull(o2);
 		
 //		fail("fail");
 	}
@@ -130,4 +137,18 @@ public class BoardControllerTests {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
