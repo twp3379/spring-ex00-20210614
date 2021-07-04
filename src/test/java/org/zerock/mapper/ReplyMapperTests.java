@@ -3,7 +3,6 @@ package org.zerock.mapper;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class ReplyMapperTests {
 		ReplyVO vo = new ReplyVO();
 		vo.setReply("댓글!!!");
 		vo.setReplyer("user00");
-		vo.setBno(145L);
+		vo.setBno(150L);
 		
 		// Long 
 		// long
@@ -47,7 +46,7 @@ public class ReplyMapperTests {
 	
 	@Test
 	public void testRead() {
-		ReplyVO vo = mapper.read(11L);
+		ReplyVO vo = mapper.read(1L);
 		
 		assertEquals("댓글!!!", vo.getReply());
 	}
@@ -55,7 +54,7 @@ public class ReplyMapperTests {
 	@Test
 	public void testDelete() {
 		ReplyVO vo = new ReplyVO();
-		vo.setBno(148L);
+		vo.setBno(150L);
 		vo.setReply("댓글~~");
 		vo.setReplyer("user00");
 		
@@ -68,7 +67,7 @@ public class ReplyMapperTests {
 	
 	@Test
 	public void testUpdate() {
-		ReplyVO vo = mapper.read(13L);
+		ReplyVO vo = mapper.read(2L);
 		
 		String re = "수정된 댓글";
 		
@@ -76,20 +75,21 @@ public class ReplyMapperTests {
 		
 		assertEquals(1, mapper.update(vo));
 		
-		vo = mapper.read(13L);
+		vo = mapper.read(2L);
 		assertEquals(re, vo.getReply());
 		
 	}
+	
 	@Test
 	public void testGetList() {
-		Long bno = 148L;
+		Long bno = 150L;
 		
 		List<ReplyVO> list = mapper.getList(bno);
 		assertTrue(list.size() > 0);
 		
 		bno = 50L;
 		list = mapper.getList(bno);
-		assertTrue(list.size() >= 0);
+		assertTrue(list.size() > 0);
 		
 		bno = 49L;
 		list = mapper.getList(bno);
@@ -97,8 +97,16 @@ public class ReplyMapperTests {
 		
 		
 	}
+	
+	@Test
+	public void testDeleteByBno() {
+		Long bno = 148L;
+		
+		mapper.deleteByBno(bno);
+	}
 
 }
+
 
 
 

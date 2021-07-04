@@ -43,7 +43,9 @@ $(document).ready(function() {
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
+				<%--
 				<th>수정일</th>
+				 --%>
 			</tr>
 		</thead>
 		<tbody>
@@ -56,22 +58,28 @@ $(document).ready(function() {
 						<c:param name="bno" value="${board.bno }" />
 						<c:param name="pageNum" value="${pageMaker.cri.pageNum }" />
 						<c:param name="amount" value="${pageMaker.cri.amount }" />
-						<c:param name="type" value="${pageMaker.cri.type }"></c:param>
-						<c:param name="keyword" value="${pageMaker.cri.keyword }"></c:param>
+						<c:param name="type" value="${pageMaker.cri.type }"	/>
+						<c:param name="keyword" value="${pageMaker.cri.keyword }" />
 					</c:url>
 					
 					<a href="${getUrl}">
-						${board.title }
+						${board.title } 
 					</a>
+					<c:if test="${board.replyCnt > 0 }">
+						<i class="far fa-comment-dots"></i> ${board.replyCnt }
+					</c:if>
+						
 					
 					</td>
 					<td>${board.writer }</td>
 					<td>
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"/>
 					</td>
+					<%--
 					<td>
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }"/>
 					</td>
+					 --%>
 				</tr>
 			</c:forEach>			
 		</tbody>
@@ -104,13 +112,14 @@ $(document).ready(function() {
 	</c:if>
   </ul>
 </nav>
-<%-- 페이지 링크용 form --%>>
+
+<%-- 페이지 링크용 form --%>
 <div style="display: none;">
 	<form id="actionForm" action="${appRoot }/board/list" method="get">
 		<input name="pageNum" value="${cri.pageNum }" />
 		<input name="amount" value="${cri.amount }" />
-		<input name="type" value="${cri.type }">
-		<input name="keyword" value="${cri.keyword }">
+		<input name="type" value="${cri.type }" />
+		<input name="keyword" value="${cri.keyword }" />
 	</form>
 </div>
 

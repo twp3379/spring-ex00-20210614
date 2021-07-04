@@ -59,6 +59,15 @@ WHERE rno = #{rno}
 
 </select>
 
+<select id="getCountByBno" resultType="int">
+SELECT COUNT(*) FROM tbl_reply WHERE bno = #{bno}
+</select>
+
+<delete id="deleteByBno">
+DELETE FROM tbl_reply
+WHERE bno = #{bno}
+</delete>
+
 </mapper>
 
 
