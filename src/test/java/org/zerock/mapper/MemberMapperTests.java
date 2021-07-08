@@ -55,24 +55,24 @@ public class MemberMapperTests {
 		mapper.insert(vo1);
 	}
 	
-	@Test
-	public void testInsertAuth() {
-		/*
-		AuthVO vo1 = new AuthVO();
-		vo1.setAuth("ROLE_MEMBER");
-		vo1.setUserid("member");
-		mapper.insertAuth(vo1);
-		
-		vo1.setAuth("ROLE_MEMBER");
-		vo1.setUserid("admin");
-		mapper.insertAuth(vo1);
-		
-		vo1.setAuth("ROLE_ADMIN");
-		vo1.setUserid("admin");
-		mapper.insertAuth(vo1);
-		*/
-	}
-	
+//	@Test
+//	public void testInsertAuth() {
+//		/*
+//		AuthVO vo1 = new AuthVO();
+//		vo1.setAuth("ROLE_MEMBER");
+//		vo1.setUserid("member");
+//		mapper.insertAuth(vo1);
+//		
+//		vo1.setAuth("ROLE_MEMBER");
+//		vo1.setUserid("admin");
+//		mapper.insertAuth(vo1);
+//		
+//		vo1.setAuth("ROLE_ADMIN");
+//		vo1.setUserid("admin");
+//		mapper.insertAuth(vo1);
+//		*/
+//	}
+//	
 	@Test
 	public void testRead() {
 		MemberVO vo = mapper.read("admin");
@@ -82,6 +82,7 @@ public class MemberMapperTests {
 		assertEquals("어드민", vo.getUserName());
 		assertTrue(encoder.matches("admin", vo.getUserpw()));
 		assertTrue(vo.isEnabled());
+		
 	}
 }
 
